@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Arbeitstagsrechner</string>
+    <string name="enter_date_start_string">Bitte Anfangsdatum eingeben</string>
+    <string name="enter_date_here">Datum hier eingeben</string>
+    <string name="enter_date_end_string">Bitte Enddatum eingeben</string>
+    <string name="date_interval_text">Zeitintervall:</string>
+    <string name="date_interval_placeholder">0</string>
 </resources>
