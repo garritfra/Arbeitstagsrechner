@@ -27,8 +27,9 @@ class MainActivity : AppCompatActivity() {
             val dateStart: Calendar = parseStringToCalendar(dateStartEditText.text.toString())
             val dateEnd: Calendar = parseStringToCalendar(dateEndEditText.text.toString())
             dateInterval = DateInterval(dateStart, dateEnd)
-
-            updateTextView(dateIntervalTextView, dateInterval.intervalInDays.toString())
+            val dateIntervalStr = dateInterval.intervalInDays.toString()
+            val daysString: String = dateIntervalStr + " Days"
+            updateTextView(dateIntervalTextView, daysString)
 
         })
 
