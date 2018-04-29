@@ -24,10 +24,10 @@ public class DateInterval {
     private int calculateInterval(Calendar dateStart, Calendar dateEnd) {
         long differenceLong = calculateDifference(dateStart, dateEnd);
         int days = calculateDays(differenceLong);
-        return makeIntegerPositive(days);
+        return makeIntegerAbsolute(days);
     }
 
-    private int makeIntegerPositive(int days) {
+    private int makeIntegerAbsolute(int days) {
         return Math.abs(days);
     }
 

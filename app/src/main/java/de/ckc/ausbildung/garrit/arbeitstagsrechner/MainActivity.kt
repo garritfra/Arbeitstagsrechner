@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-
     }
 
     private fun updateTextView(textView: TextView, value: String) {
@@ -45,9 +44,7 @@ class MainActivity : AppCompatActivity() {
         val date = format.parse(dateStr)
         val cal = Calendar.getInstance()
         cal.time = date
-
         return cal
-
 
     }
 
