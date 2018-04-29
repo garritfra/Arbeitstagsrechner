@@ -50,12 +50,12 @@ public class DateIntervalTest {
     }
 
     @Test
-    public void getIntervalInDays_oneNegativeDay() throws Exception {
+    public void getIntervalInDays_oneNegativeYear() throws Exception {
         dateStart.set(2002, 1, 1, 0, 0);
-        dateEnd.set(2001, 12, 31, 0, 0);
+        dateEnd.set(2001, 1, 1, 0, 0);
         dateInterval = new DateInterval(dateStart, dateEnd);
 
-        Assert.assertEquals(1, dateInterval.getIntervalInDays());
+        Assert.assertEquals(365, dateInterval.getIntervalInDays());
     }
 
     @Test

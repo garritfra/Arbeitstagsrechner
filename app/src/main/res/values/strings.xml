@@ -5,4 +5,6 @@
     <string name="enter_date_end_string">Bitte Enddatum eingeben</string>
     <string name="date_interval_text">Zeitintervall:</string>
     <string name="date_interval_placeholder">0</string>
+    <string name="date_template">DD.MM.YYYY</string>
+    <string name="calculate_interval">Intervall berechnen</string>
 </resources>

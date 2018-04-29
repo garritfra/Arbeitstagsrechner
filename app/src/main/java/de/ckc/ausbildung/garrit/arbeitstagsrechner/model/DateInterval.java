@@ -8,13 +8,13 @@ import java.util.Calendar;
  * This class calculates the difference between two dates
  */
 
-class DateInterval {
+public class DateInterval {
 
     private Calendar dateStart;
     private Calendar dateEnd;
     private int intervalInDays;
 
-    DateInterval(Calendar dateStart, Calendar dateEnd) {
+    public DateInterval(Calendar dateStart, Calendar dateEnd) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.intervalInDays = calculateInterval(this.dateStart, this.dateEnd);
@@ -41,7 +41,7 @@ class DateInterval {
         return dateEndLong - dateStartLong;
     }
 
-    int getIntervalInDays() {
+    public int getIntervalInDays() {
         return intervalInDays;
     }
 
