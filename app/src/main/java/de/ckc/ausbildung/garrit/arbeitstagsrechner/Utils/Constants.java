@@ -6,6 +6,6 @@ package de.ckc.ausbildung.garrit.arbeitstagsrechner.Utils;
  * Constants Utility Class
  */
 
-public final class Constants {
-    public static final String datePattern = "dd.MM.yyyy";
+final class Constants {
+    static final String datePattern = "dd.MM.yyyy";
 }

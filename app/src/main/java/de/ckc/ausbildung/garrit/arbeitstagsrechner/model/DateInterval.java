@@ -15,6 +15,9 @@ public class DateInterval {
     private int intervalInDays;
 
     public DateInterval(Calendar dateStart, Calendar dateEnd) {
+        dateStart.setLenient(false);
+        dateEnd.setLenient(false);
+
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.intervalInDays = calculateInterval(this.dateStart, this.dateEnd);
@@ -53,5 +56,13 @@ public class DateInterval {
     void setDateEnd(Calendar dateEnd) {
         this.dateEnd = dateEnd;
         this.intervalInDays = calculateInterval(dateStart, dateEnd);
+    }
+
+    boolean isValid() {
+        return !endBeforeStart();
+    }
+
+    private boolean endBeforeStart() {
+        return dateEnd.before(dateStart);
     }
 }
