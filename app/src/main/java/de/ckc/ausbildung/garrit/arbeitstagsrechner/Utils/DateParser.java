@@ -13,17 +13,13 @@ import java.util.Locale;
  */
 
 public class DateParser {
-    public static Calendar parseStringToCalendar(String dateString) {
+    public static Calendar parseStringToCalendar(String dateString) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat(Constants.datePattern, Locale.GERMAN);
         format.setLenient(false);
-        try {
-            Date date = format.parse(dateString);
+
+        Date date = format.parse(dateString);
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             return cal;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }

@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import de.ckc.ausbildung.garrit.arbeitstagsrechner.Utils.DateParser
 import de.ckc.ausbildung.garrit.arbeitstagsrechner.model.DateInterval
+import java.text.ParseException
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,15 +23,47 @@ class MainActivity : AppCompatActivity() {
         val calculateIntervalButton = findViewById<Button>(R.id.calculate_interval_button)
         val dateIntervalTextView = findViewById<TextView>(R.id.date_interval_textView)
 
+
+        //TODO Refactor
         calculateIntervalButton.setOnClickListener({
-            val dateStart: Calendar = DateParser.parseStringToCalendar(dateStartEditText.text
-                    .toString())
-            val dateEnd: Calendar = DateParser.parseStringToCalendar(dateEndEditText.text
-                    .toString())
+
+            var valid = true
+            var dateStart: Calendar = Calendar.getInstance()
+            var dateEnd: Calendar = Calendar.getInstance()
+
+            while (valid) {
+
+                valid = false
+
+                try {
+                    dateStart = DateParser.parseStringToCalendar(dateStartEditText.text
+                            .toString())
+                } catch (e: ParseException) {
+                    valid = false
+                    dateStartEditText.error = "Enter a valid date!"
+                }
+
+                try {
+                    dateEnd = DateParser.parseStringToCalendar(dateEndEditText.text
+                            .toString())
+                } catch (e: ParseException) {
+                    valid = false
+                    dateEndEditText.error = "Enter a valid date!"
+                }
+
+            }
+
+
+
             dateInterval = DateInterval(dateStart, dateEnd)
             val dateIntervalStr = dateInterval.intervalInDays.toString()
-            val daysString: String = dateIntervalStr + " Days"
-            updateTextView(dateIntervalTextView, daysString)
+            val daysString = "$dateIntervalStr Days"
+
+            if (dateInterval.isValid) {
+                updateTextView(dateIntervalTextView, daysString)
+            } else {
+                dateEndEditText.error = "End date should not be before start date"
+            }
 
         })
 

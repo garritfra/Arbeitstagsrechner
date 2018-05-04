@@ -6,8 +6,8 @@ import java.util.Calendar;
  * Created by garritfra on 29.04.18.
  * <p>
  * This class calculates the difference between two dates
- */
 
+ */
 public class DateInterval {
 
     private Calendar dateStart;
@@ -58,7 +58,7 @@ public class DateInterval {
         this.intervalInDays = calculateInterval(dateStart, dateEnd);
     }
 
-    boolean isValid() {
+    public boolean isValid() {
         return !endBeforeStart();
     }
 
@@ -66,3 +66,6 @@ public class DateInterval {
         return dateEnd.before(dateStart);
     }
 }
+
+
+
