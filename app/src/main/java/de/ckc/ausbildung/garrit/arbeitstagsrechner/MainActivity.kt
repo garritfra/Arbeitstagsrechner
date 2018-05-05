@@ -23,41 +23,13 @@ class MainActivity : AppCompatActivity() {
         val calculateIntervalButton = findViewById<Button>(R.id.calculate_interval_button)
         val dateIntervalTextView = findViewById<TextView>(R.id.date_interval_textView)
 
-
-        //TODO Refactor
         calculateIntervalButton.setOnClickListener({
 
-            var valid = true
-            var dateStart: Calendar = Calendar.getInstance()
-            var dateEnd: Calendar = Calendar.getInstance()
-
-            while (valid) {
-
-                valid = false
-
-                try {
-                    dateStart = DateParser.parseStringToCalendar(dateStartEditText.text
-                            .toString())
-                } catch (e: ParseException) {
-                    valid = false
-                    dateStartEditText.error = "Enter a valid date!"
-                }
-
-                try {
-                    dateEnd = DateParser.parseStringToCalendar(dateEndEditText.text
-                            .toString())
-                } catch (e: ParseException) {
-                    valid = false
-                    dateEndEditText.error = "Enter a valid date!"
-                }
-
-            }
-
-
+            val dateStart: Calendar = handleDateInput(dateStartEditText)
+            val dateEnd: Calendar = handleDateInput(dateEndEditText)
 
             dateInterval = DateInterval(dateStart, dateEnd)
-            val dateIntervalStr = dateInterval.intervalInDays.toString()
-            val daysString = "$dateIntervalStr Days"
+            val daysString = generateDaysString(dateInterval)
 
             if (dateInterval.isValid) {
                 updateTextView(dateIntervalTextView, daysString)
@@ -68,6 +40,31 @@ class MainActivity : AppCompatActivity() {
         })
 
 
+    }
+
+    private fun generateDaysString(dateInterval: DateInterval): String {
+        val dateIntervalStr = dateInterval.intervalInDays.toString()
+        return "$dateIntervalStr Days"
+    }
+
+    private fun handleDateInput(dateEditText: EditText): Calendar {
+        var valid = true
+        var date: Calendar = Calendar.getInstance()
+
+        while (valid) {
+
+            valid = false
+
+            try {
+                date = DateParser.parseStringToCalendar(dateEditText.text
+                        .toString())
+            } catch (e: ParseException) {
+                valid = false
+                dateEditText.error = "Enter a valid date!"
+            }
+
+        }
+        return date
     }
 
     private fun updateTextView(textView: TextView, value: String) {
