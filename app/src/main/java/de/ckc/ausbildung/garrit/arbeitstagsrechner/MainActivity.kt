@@ -18,28 +18,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dateStartEditText = findViewById<EditText>(R.id.date_start_editText)
-        val dateEndEditText = findViewById<EditText>(R.id.date_end_editText)
         val calculateIntervalButton = findViewById<Button>(R.id.calculate_interval_button)
-        val dateIntervalTextView = findViewById<TextView>(R.id.date_interval_textView)
 
         calculateIntervalButton.setOnClickListener({
-
-            val dateStart: Calendar = handleDateInput(dateStartEditText)
-            val dateEnd: Calendar = handleDateInput(dateEndEditText)
-
-            dateInterval = DateInterval(dateStart, dateEnd)
-            val daysString = generateDaysString(dateInterval)
-
-            if (dateInterval.isValid) {
-                updateTextView(dateIntervalTextView, daysString)
-            } else {
-                dateEndEditText.error = "End date should not be before start date"
-            }
-
+            handleCalculateDateButtonClicked()
         })
 
+    }
 
+    private fun handleCalculateDateButtonClicked() {
+
+        val dateStartEditText = findViewById<EditText>(R.id.date_start_editText)
+        val dateEndEditText = findViewById<EditText>(R.id.date_end_editText)
+        val dateIntervalTextView = findViewById<TextView>(R.id.date_interval_textView)
+        val dateStart: Calendar = handleDateInput(dateStartEditText)
+        val dateEnd: Calendar = handleDateInput(dateEndEditText)
+
+        dateInterval = DateInterval(dateStart, dateEnd)
+        val daysString = generateDaysString(dateInterval)
+
+        if (dateInterval.isValid) {
+            updateTextView(dateIntervalTextView, daysString)
+        } else {
+            dateEndEditText.error = "End date should not be before start date"
+        }
     }
 
     private fun generateDaysString(dateInterval: DateInterval): String {
