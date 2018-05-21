@@ -7,4 +7,5 @@
     <string name="date_interval_placeholder">0</string>
     <string name="date_template">DD.MM.YYYY</string>
     <string name="calculate_interval">Intervall berechnen</string>
+    <string name="default_file_name">dateIntervals.txt</string>
 </resources>
